@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: supplier-service
+
+  config:
+    import: "optional:configserver:"
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/supplierdb
+    username: postgres
+    password: root
+
+  flyway:
+    enabled: true
+    url: jdbc:postgresql://localhost:5432/supplierdb
+    user: postgres
+    password: root
+    schemas: public
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+  main:
+    web-application-type: reactive
+
+  jackson:
+    serialization:
+      indent-output: true
+
+server:
+  port: 8082
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    org.flywaydb: DEBUG
